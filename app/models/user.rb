@@ -6,7 +6,10 @@ class User < ApplicationRecord
 
   enum :designation, { manager: 0, lead: 1, user: 2}
 
+  has_many :bills
+  belongs_to :department
+
   def name
-    first_name + last_name
+    first_name + " "+ last_name
   end
 end

@@ -11,33 +11,23 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :bill_type, style: "display: block" %>
-    <%= form.select :bill_type, Bill.bill_types.keys.map{|type| [type, type]} %>
-
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+          <%= form.select :bill_type, Bill.bill_types.keys.map{|type| [type, type]},
+        {prompt: 'Select type' },  class: "form-select", onblur:'this.size=1', onchange:'this.size=1, this.blur()', id:'bill-type'%>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= form.select :user_id, User.all.map{|user| [user.name, user.id]},
+        {prompt: 'Select employee' },  class: "form-select", onblur:'this.size=1', onchange:'this.size=1, this.blur()', id:'bill-user'%>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= form.select :currency, Bill.currencies.keys.map{|currency| [currency, currency]},
+        {prompt: 'Select currency' },  class: "form-select", onblur:'this.size=1', onchange:'this.size=1, this.blur()', id:'bill-user'%>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= form.number_field :amount, placeholder: 'amount', class:"form-control "%>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.select :user_id, User.all.map{|user| [user.name, user.id]} %>
-  </div>
-
-  <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.number_field :amount %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.select :status, Bill.statuses.keys.map{|status| [status, status]} %>
-  </div>
-
-  <div>
-    <%= form.label :currency, style: "display: block" %>
-    <%= form.select :currency, Bill.currencies.keys.map{|currency| [currency, currency]} %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
 <% end %>

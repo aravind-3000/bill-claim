@@ -1,14 +1,24 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Full name</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Department</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each_with_index do |user, index| %>
+    <tr>
+      <th scope="row"><%= index+1 %></th>
+      <td><%= user.name %></td>
+      <td><%= user.designation %></td>
+      <td><%= user.department.name %></td>
+      <td><%= link_to "Show", user %></td>
+    </tr>
   <% end %>
-</div>
+  </tbody>
+</table>
 
-<%= link_to "New user", new_user_path %>
+<%= button_to "New user", 'users/new', method: :get, class: 'btn btn-primary' %>

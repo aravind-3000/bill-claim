@@ -11,32 +11,28 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <%= form.text_field :first_name, placeholder: 'first name', class:"form-control "%>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <%= form.text_field :last_name, placeholder: 'last name', class:"form-control "%>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <%= form.email_field :email, placeholder: 'email', class:"form-control "%>
+    </div>
+
+    <div class="col-md-4 mb-3">
+          <%= form.select :designation, User.designations.keys.map{|designation| [designation, designation]},
+        {prompt: 'Select designation' },  class: "form-select", onblur:'this.size=1', onchange:'this.size=1, this.blur()', id:'bill-type'%>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= form.select :department_id, Department.all.map{|dept| [dept.name, dept.id]},
+        {prompt: 'Select department' },  class: "form-select", onblur:'this.size=1', onchange:'this.size=1, this.blur()', id:'bill-user'%>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :designation, style: "display: block" %>
-    <%= form.number_field :designation %>
-  </div>
-
-  <div>
-    <%= form.label :department, style: "display: block" %>
-    <%= form.number_field :department_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <button class="btn btn-primary" type="submit">Create</button>
 <% end %>

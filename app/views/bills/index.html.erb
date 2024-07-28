@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Bills</h1>
-
-<div id="bills">
-  <% @bills.each do |bill| %>
-    <%= render bill %>
-    <p>
-      <%= link_to "Show this bill", bill %>
-    </p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Type</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Submitted date</th>
+      <th scope="col">Submitted by</th>
+      <th scope="col">Department</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @bills.each_with_index do |bill, index| %>
+    <tr>
+      <th scope="row"><%= index+1 %></th>
+      <td><%= bill.bill_type %></td>
+      <td><%= bill.amount %></td>
+      <td><%= bill.created_at.strftime("%Y-%m-%d") %></td>
+      <td><%= bill.user.name %></td>
+      <td><%= bill.user.department.name %></td>
+      <td><%= link_to "Show", bill %></td>
+    </tr>
   <% end %>
-</div>
+  </tbody>
+</table>
 
-<%= link_to "New bill", new_bill_path %>
+<%= button_to "New bill", 'bills/new', method: :get, class: 'btn btn-primary' %>

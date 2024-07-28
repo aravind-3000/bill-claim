@@ -5,23 +5,23 @@
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= bill.user_id %>
-  </p>
-
-  <p>
     <strong>Amount:</strong>
     <%= bill.amount %>
   </p>
 
   <p>
-    <strong>Status:</strong>
-    <%= bill.status %>
+    <strong>Submitted date:</strong>
+    <%= bill.created_at.strftime("%Y-%m-%d") %>
   </p>
 
   <p>
-    <strong>Currency:</strong>
-    <%= bill.currency %>
+    <strong>Submitted by:</strong>
+    <%= bill.user.name %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= bill.status %>
   </p>
 
 </div>
