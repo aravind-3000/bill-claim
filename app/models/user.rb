@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum :designation, { manager: 0, lead: 1, user: 2}
+
+  def name
+    first_name + last_name
+  end
 end
